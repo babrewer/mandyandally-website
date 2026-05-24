@@ -79,8 +79,7 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    {/* STAGING — block indexing. Removed at production-cutover. */}
-    <meta name="robots" content="noindex, nofollow" />
+    {/* STAGING — search-engine blocking handled via robots.txt (Disallow: /) so iMessage / Apple LinkPresentation + FB Sharing Debugger can still fetch + render previews. Meta robots intentionally NOT set on staging — turn it on at production cutover only if needed. */}
 
     <meta property="og:type" content={pathname === '/' ? 'website' : 'article'} />
     <meta property="og:url" content={canonical} />

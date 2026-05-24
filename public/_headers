@@ -1,4 +1,6 @@
-# STAGING — block indexing at the HTTP level (defense in depth alongside
-# robots.txt + <meta robots>). Removed at production-cutover time.
-/*
-  X-Robots-Tag: noindex, nofollow
+# STAGING — search-engine blocking is handled by robots.txt (Disallow: /) only.
+# X-Robots-Tag intentionally NOT set: iMessage / Apple LinkPresentation respect
+# the HTTP-level X-Robots-Tag noindex and will refuse to render link previews
+# if it's present. Search engines respecting robots.txt stay out via the
+# robots.txt deny rule. At production cutover, add explicit cache-control
+# directives here.
