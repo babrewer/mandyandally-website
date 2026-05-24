@@ -1,0 +1,84 @@
+---
+import siteData from '../data/site.json';
+const { site, locations } = siteData;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = pathname === '/';
+const isAbout = pathname === '/about';
+const isLocation = pathname.startsWith('/locations/');
+const isLocationActive = (slug: string) => pathname === `/locations/${slug}`;
+---
+<header class="site-header">
+  <a href="/" class="logo-mark logo-mark--img" aria-label={`${site.name} home`}>
+    <img src={site.logoColor} alt={site.name} />
+  </a>
+
+  <nav class="primary" aria-label="Primary">
+    <a href="/" class={isHome ? 'active' : ''}>Home</a>
+    <a href="/about" class={isAbout ? 'active' : ''}>About</a>
+    <div class="nav-item">
+      <a href={isHome ? '#locations' : '/#locations'} class={`has-caret ${isLocation ? 'active' : ''}`}>Locations
+        <svg viewBox="0 0 10 10" fill="currentColor"><path d="M1 3l4 4 4-4z"/></svg>
+      </a>
+      <div class="dropdown">
+        {locations.map(loc => (
+          <a href={`/locations/${loc.slug}`} class={isLocationActive(loc.slug) ? 'active' : ''}>{loc.name}</a>
+        ))}
+      </div>
+    </div>
+    <a href={isHome ? '#instagrams' : '/#instagrams'}>Instagrams</a>
+  </nav>
+
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-drawer" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <line x1="3" y1="7" x2="21" y2="7" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="17" x2="21" y2="17" />
+    </svg>
+  </button>
+</header>
+
+<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+  <div class="nav-drawer-header">
+    <a href="/" aria-label={`${site.name} home`}>
+      <img src={site.logoColor} alt={site.name} />
+    </a>
+    <button class="nav-close" id="nav-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="nav-drawer-links" aria-label="Primary mobile">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <div class="nav-drawer-section-label">Locations</div>
+    {locations.map(loc => (
+      <a href={`/locations/${loc.slug}`} class="sub">{loc.name}</a>
+    ))}
+    <a href={isHome ? '#instagrams' : '/#instagrams'}>Instagrams</a>
+  </nav>
+</div>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const drawer = document.getElementById('nav-drawer');
+  const closeBtn = document.getElementById('nav-close');
+
+  function openDrawer() {
+    if (!drawer || !toggle) return;
+    drawer.hidden = false;
+    document.body.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeDrawer() {
+    if (!drawer || !toggle) return;
+    drawer.hidden = true;
+    document.body.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer && !drawer.hidden) closeDrawer();
+  });
+</script>

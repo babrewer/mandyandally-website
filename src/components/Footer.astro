@@ -1,0 +1,28 @@
+---
+import siteData from '../data/site.json';
+const { site } = siteData;
+interface Props { year: number }
+const { year } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="bg-media" aria-hidden="true"></div>
+  <div class="bg-placeholder" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="footer-inner">
+    <img class="footer-logo" alt={site.name} src={site.logoReverse} />
+    <div class="footer-cta">Also visit us on Amazon and Social Media</div>
+    <div class="social">
+      <a class="amazon" href={site.amazonUrl} aria-label="Amazon storefront" target="_blank" rel="noopener">
+        <img src="/images/amazon-icon-rev.png" alt="Amazon" />
+      </a>
+      <a class="ig" href={site.instagramUrl} aria-label="Instagram" target="_blank" rel="noopener">
+        <img src="/images/instagram-icon-rev.svg" alt="Instagram" />
+      </a>
+      <a class="fb" href={site.facebookUrl} aria-label="Facebook" target="_blank" rel="noopener">
+        <img src="/images/facebook-icon.svg" alt="Facebook" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+<div class="copyline">© {site.name} — {year} | Site by: <a href="https://www.brewermarketinggroup.com/" target="_blank" rel="noopener">BMG</a></div>

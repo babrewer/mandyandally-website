@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import siteData from '../data/site.json';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  pageType?: 'website' | 'article' | 'localBusiness';
+}
+
+const { title, description = siteData.site.description, ogImage, pageType = 'website' } = Astro.props;
+const { site } = siteData;
+const pathname = Astro.url.pathname;
+const canonical = new URL(pathname, site.url).toString();
+const ogImageUrl = ogImage
+  ? new URL(ogImage, site.url).toString()
+  : new URL(site.ogImage, site.url).toString();
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {/* STAGING — block indexing. Removed at production-cutover. */}
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta property="og:type" content={pathname === '/' ? 'website' : 'article'} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content={site.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <meta name="theme-color" content="#f5efe5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer year={year} />
+  </body>
+</html>

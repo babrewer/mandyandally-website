@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import siteData from '../data/site.json';
+const { site, locations } = siteData;
+
+const localBusinessSchema = locations.map(loc => ({
+  '@context': 'https://schema.org',
+  '@type': 'ClothingStore',
+  '@id': new URL(`/locations/${loc.slug}#store`, site.url).toString(),
+  name: loc.fullName,
+  parentOrganization: { '@type': 'Organization', name: site.name },
+  url: new URL(`/locations/${loc.slug}`, site.url).toString(),
+  telephone: loc.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: loc.streetAddress,
+    addressLocality: loc.addressLocality,
+    addressRegion: loc.addressRegion,
+    postalCode: loc.postalCode,
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: loc.geo.lat, longitude: loc.geo.lng },
+  openingHoursSpecification: loc.openingHoursSpec.map(o => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: o.dayOfWeek,
+    opens: o.opens,
+    closes: o.closes,
+  })),
+  sameAs: [site.instagramUrl, site.facebookUrl, site.amazonUrl].filter(Boolean),
+}));
+---
+<BaseLayout
+  title="Mandy+Ally | Love Your Style"
+  description={site.description}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  </Fragment>
+
+  <section class="hero">
+    <div class="media">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto"
+             poster="/images/hero-poster.jpg">
+        <source src="/images/hero-video.webm" type="video/webm" />
+        <source src="/images/hero-video.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="vignette"></div>
+    <div class="hero-lockup">
+      <img class="hero-logo" alt={site.name} src={site.logoReverse} />
+    </div>
+    <a href="#about" class="scroll-chevron" aria-label="Scroll to content">
+      <img src="/images/scroll-down.gif" alt="" />
+    </a>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">Mandy + Ally</h2>
+      <div class="body-copy">
+        <p>Mandy + Ally started with a passion to provide fun, trend-savvy fashion that works for all ages and body types. Our goals are to offer a wide selection of current styles with flair that accommodate your lifestyle and discerning eye while extending personalized customer service.</p>
+        <p>We are always scanning the market for hidden treasures so we invite you to shop with us often. Hopefully you will fall in love !!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="locations" id="locations">
+    <div class="container">
+      <h2 class="section-title">Locations</h2>
+      <div class="loc-grid">
+        {locations.map(loc => (
+          <div class="loc" id={loc.id}>
+            <h3>{loc.name}</h3>
+            <div class="addr" set:html={loc.addressLines.join('<br>')} />
+            <div class="hours" set:html={loc.hours.join('<br>')} />
+            <div class="phone"><a href={`tel:${loc.phone.replace(/[^0-9+]/g, '')}`}>{loc.phone}</a></div>
+            <a class="btn-outline" href={`/locations/${loc.slug}`}>Map &amp; Directions</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="insta" id="instagrams">
+    <div class="container">
+      <h2 class="section-title">Recent Instagrams</h2>
+
+      <div class="insta-embed">
+        <behold-widget feed-id={site.beholdFeedId}></behold-widget>
+      </div>
+
+      <div class="insta-footer">
+        <a class="insta-handle" href={site.instagramUrl} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          {site.instagramHandle}
+        </a>
+      </div>
+      <div class="more-row">
+        <a class="btn-outline" href={site.instagramUrl} target="_blank" rel="noopener">More Instagrams</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const d = document, s = d.createElement('script');
+      s.type = 'module';
+      s.src = 'https://w.behold.so/widget.js';
+      d.head.append(s);
+    })();
+  </script>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id && id.length > 1) {
+          const el = document.querySelector(id);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</BaseLayout>

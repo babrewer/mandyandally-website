@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects.
+#
+# 411 / News section was dropped during migration (per 2026-05-24 decision —
+# items were ~5 years stale, events block has been empty forever). Send any
+# remaining indexed 411 URLs to the home page.
+/411  /  301
+/411/*  /  301

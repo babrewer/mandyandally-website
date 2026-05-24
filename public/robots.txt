@@ -1,0 +1,11 @@
+# STAGING — temporarily disallowing all crawlers.
+#
+# This file ships in staging deploys (e.g. <slug>.pages.dev). At DNS cutover
+# to the real production domain, this file is swapped for the AI-bot allowlist
+# (GPTBot, ChatGPT-User, ClaudeBot, anthropic-ai, PerplexityBot,
+#  Google-Extended, Applebot-Extended, CCBot, cohere-ai).
+
+User-agent: *
+Disallow: /
+
+Sitemap: https://www.mandyandally.com/sitemap-index.xml

@@ -1,0 +1,4 @@
+# STAGING — block indexing at the HTTP level (defense in depth alongside
+# robots.txt + <meta robots>). Removed at production-cutover time.
+/*
+  X-Robots-Tag: noindex, nofollow

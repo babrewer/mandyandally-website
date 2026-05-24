@@ -1,0 +1,75 @@
+{
+  "site": {
+    "name": "Mandy + Ally",
+    "slug": "mandyandally",
+    "url": "https://www.mandyandally.com",
+    "domain": "mandyandally.com",
+    "vertical": "retail",
+    "description": "Mandy+Ally — fun, trend-savvy fashion that works for all ages and body types. Two locations in Savannah, GA and Hilton Head Island, SC.",
+    "logoColor": "/images/ma-logo-color.svg",
+    "logoReverse": "/images/ma-logo-reverse.svg",
+    "ogImage": "/images/og-default.jpg",
+    "instagramHandle": "mandyandally",
+    "instagramUrl": "https://www.instagram.com/mandyandally/",
+    "facebookUrl": "https://www.facebook.com/mandyandally/",
+    "amazonUrl": "https://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A27DXTENS4J5GM&merchant=A27DXTENS4J5GM&redirect=true",
+    "beholdFeedId": "ZHjKU2QVX5AhjnmI4U5c",
+    "yearFounded": 2018
+  },
+  "locations": [
+    {
+      "id": "savannah",
+      "name": "Savannah",
+      "fullName": "Mandy+Ally Savannah & Wilmington Island",
+      "slug": "mandy-ally-savannah-wilmington-island",
+      "addressLines": [
+        "6707 Johnny Mercer Blvd.",
+        "Savannah, GA 31410"
+      ],
+      "addressLocality": "Savannah",
+      "addressRegion": "GA",
+      "postalCode": "31410",
+      "streetAddress": "6707 Johnny Mercer Blvd.",
+      "phone": "912-596-5227",
+      "hours": [
+        "Tuesday — Saturday 12 – 6",
+        "Closed Sunday & Monday"
+      ],
+      "openingHoursSpec": [
+        { "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "12:00", "closes": "18:00" }
+      ],
+      "geo": { "lat": 32.018787, "lng": -80.974922 },
+      "mapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.864226475781!2d-80.9771163487988!3d32.018791329471085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fb79ec32923979%3A0x77485754686d4e50!2sMandy%2BAlly!5e0!3m2!1sen!2sus!4v1621513871807!5m2!1sen!2sus",
+      "directionsUrl": "https://maps.google.com/maps?ll=32.018787,-80.974922&z=16&t=m&hl=en&gl=US&mapclient=embed&daddr=Mandy%2BAlly%206707%20Johnny%20Mercer%20Blvd%20Savannah%2C%20GA%2031410@32.0187868,-80.9749223"
+    },
+    {
+      "id": "hilton-head",
+      "name": "Hilton Head",
+      "fullName": "Mandy+Ally Hilton Head",
+      "slug": "hilton-head",
+      "addressLines": [
+        "Located in the Villages of Wexford",
+        "1000 William Hilton Pkwy",
+        "Unit C3",
+        "Hilton Head Island, SC 29928"
+      ],
+      "addressLocality": "Hilton Head Island",
+      "addressRegion": "SC",
+      "postalCode": "29928",
+      "streetAddress": "1000 William Hilton Pkwy, Unit C3",
+      "phone": "843-929-9042",
+      "hours": [
+        "Monday — Friday 10:30 – 5:00",
+        "Saturday 10:30 – 4:30"
+      ],
+      "openingHoursSpec": [
+        { "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "10:30", "closes": "17:00" },
+        { "dayOfWeek": ["Saturday"], "opens": "10:30", "closes": "16:30" }
+      ],
+      "geo": { "lat": 32.159503, "lng": -80.755623 },
+      "heroImage": "/images/hilton-head-storefront.jpeg",
+      "mapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3377.6587262591206!2d-80.75781714879655!3d32.15950712242716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fc79eae8dc39b3%3A0x50083a7bd172cd94!2sMandy%2BAlly!5e0!3m2!1sen!2sus!4v1621513496854!5m2!1sen!2sus",
+      "directionsUrl": "https://maps.google.com/maps?ll=32.159503,-80.755623&z=16&t=m&hl=en&gl=US&mapclient=embed&daddr=Mandy%2BAlly%201000%20William%20Hilton%20Pkwy%20Unit%20C3%20Hilton%20Head%20Island%2C%20SC%2029928@32.1595026,-80.7556231"
+    }
+  ]
+}

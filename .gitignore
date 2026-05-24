@@ -1,0 +1,11 @@
+node_modules
+dist
+.astro
+.env
+.env.production
+.DS_Store
+*.log
+.wrangler
+
+# Pipeline artifacts (present in generated site dirs, never in the template itself)
+crawl/
