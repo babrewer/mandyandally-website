@@ -429,7 +429,7 @@ footer .bg-overlay{
   transform: translateX(-50%) translateY(8px);
   background: #ffffff;
   border: 1px solid rgba(0,0,0,0.12);
-  min-width: 240px;
+  min-width: 180px;
   padding: 6px 0;
   opacity: 0;
   visibility: hidden;
@@ -442,10 +442,12 @@ footer .bg-overlay{
 }
 .dropdown a{
   display:block;
-  padding: 18px 44px;
-  font-size: 13px;
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 500;
   letter-spacing: 1.5px;
   color: var(--ink);
+  text-align: center;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .dropdown a:last-child{ border-bottom: 0; }
