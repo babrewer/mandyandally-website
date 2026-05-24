@@ -62,10 +62,8 @@ const shareText = encodeURIComponent(loc.fullName);
 
   <section class="loc-page">
     <div class="container">
-      {heroImage ? (
+      {heroImage && (
         <img class="loc-hero-img" alt={loc.fullName} src={heroImage} />
-      ) : (
-        <div class="loc-hero-placeholder" aria-hidden="true"></div>
       )}
 
       <div class="loc-detail">
@@ -95,6 +93,10 @@ const shareText = encodeURIComponent(loc.fullName);
       </div>
       <a class="btn-outline" href={loc.directionsUrl} target="_blank" rel="noopener">Get Directions</a>
 
+      <div class="loc-insta">
+        <behold-widget feed-id={site.beholdFeedId}></behold-widget>
+      </div>
+
       <div class="share-row">
         <span>Share This Location</span>
         <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener" aria-label="Share on Facebook">
@@ -109,4 +111,13 @@ const shareText = encodeURIComponent(loc.fullName);
       </div>
     </div>
   </section>
+
+  <script>
+    (() => {
+      const d = document, s = d.createElement('script');
+      s.type = 'module';
+      s.src = 'https://w.behold.so/widget.js';
+      d.head.append(s);
+    })();
+  </script>
 </BaseLayout>

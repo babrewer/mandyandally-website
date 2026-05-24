@@ -282,12 +282,6 @@ h2.section-title{
   object-fit: cover;
   background: #d8c9b6;
 }
-.loc-hero-placeholder{
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  background: linear-gradient(135deg,#d6c3a3,#b89a78);
-  border: 1px solid rgba(0,0,0,0.08);
-}
 .loc-detail{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -295,7 +289,8 @@ h2.section-title{
   padding: 64px 0 16px;
 }
 .loc-detail h2{ margin: 0 0 18px; font-size: 22px; letter-spacing: 2px; }
-.loc-detail a.phone-link{ border-bottom: 1px solid rgba(0,0,0,0.25); }
+.loc-insta{ margin: 56px 0 0; }
+.loc-insta behold-widget{ display:block; width:100%; }
 .loc-map-wrap{
   position: relative;
   width: 100%;
@@ -378,7 +373,7 @@ footer .bg-media{
 }
 footer .bg-overlay{
   position:absolute; inset:0; z-index:-1;
-  background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.42));
+  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.22));
 }
 .footer-inner{ padding: 130px 24px 110px; }
 .footer-logo{
