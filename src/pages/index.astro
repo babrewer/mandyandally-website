@@ -26,7 +26,7 @@ const localBusinessSchema = locations.map(loc => ({
     opens: o.opens,
     closes: o.closes,
   })),
-  sameAs: [site.instagramUrl, site.facebookUrl, site.amazonUrl].filter(Boolean),
+  sameAs: [site.instagramUrl, site.facebookUrl].filter(Boolean),
 }));
 ---
 <BaseLayout

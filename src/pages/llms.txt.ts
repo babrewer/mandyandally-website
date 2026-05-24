@@ -20,7 +20,6 @@ export const GET: APIRoute = () => {
   lines.push(`Website: ${site.url}`);
   lines.push(`Instagram: ${site.instagramUrl}`);
   lines.push(`Facebook: ${site.facebookUrl}`);
-  lines.push(`Amazon storefront: ${site.amazonUrl}`);
   lines.push('');
   lines.push('## About');
   lines.push('');

@@ -32,7 +32,7 @@ const organizationSchema = {
   description: site.description,
   foundingDate: String((site as any).yearFounded ?? ''),
   founder: ((site as any).founders ?? []).map((name: string) => ({ '@type': 'Person', name })),
-  sameAs: [site.instagramUrl, site.facebookUrl, site.amazonUrl].filter(Boolean),
+  sameAs: [site.instagramUrl, site.facebookUrl].filter(Boolean),
 };
 
 const websiteSchema = {

@@ -39,7 +39,7 @@ const localBusinessSchema = {
     closes: o.closes,
   })),
   hasMap: loc.directionsUrl,
-  sameAs: [site.instagramUrl, site.facebookUrl, site.amazonUrl].filter(Boolean),
+  sameAs: [site.instagramUrl, site.facebookUrl].filter(Boolean),
 };
 
 const description = `${loc.addressLines.join(' ')}. ${loc.hours.join(' ')}. Phone ${loc.phone}.`;
