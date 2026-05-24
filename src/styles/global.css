@@ -45,18 +45,28 @@ a{ color: inherit; text-decoration: none; }
 
 /* ===== Header ===== */
 .site-header{
-  background: var(--cream);
-  border-bottom: 1px solid rgba(0,0,0,0.22);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: rgba(245, 239, 229, 0.82);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  backdrop-filter: blur(10px) saturate(1.3);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   padding: 14px 48px;
   display:flex;
   align-items:center;
   justify-content: space-between;
   gap: 24px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
 }
+/* Fixed nav fallback for browsers without backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
+  .site-header{ background: var(--cream); }
+}
+/* Push inner-page content below the fixed nav (home hero is full-bleed under nav by design) */
+.page-banner{ padding-top: 152px; }
 .logo-mark{
   width: 168px;
   height: 92px;
@@ -521,7 +531,13 @@ body.nav-open{ overflow: hidden; }
 
 /* ===== Responsive ===== */
 @media (max-width: 920px){
-  .site-header{ padding: 12px 20px; }
+  .site-header{
+    padding: 12px 20px;
+    position: sticky;
+    background: var(--cream);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
   nav.primary{ display: none; }
   .nav-toggle{ display: inline-flex; }
   .logo-mark{ width: 130px; height: 76px; }
