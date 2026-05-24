@@ -1,9 +1,41 @@
-# STAGING — temporarily disallowing all crawlers.
+# STAGING — search engines blocked, social-link-preview scrapers allowed.
 #
-# This file ships in staging deploys (e.g. <slug>.pages.dev). At DNS cutover
-# to the real production domain, this file is swapped for the AI-bot allowlist
+# Search engines (Googlebot, Bingbot, etc) MUST stay blocked while staging
+# to prevent the .pages.dev URL from getting indexed before cutover.
+#
+# BUT social-link-preview scrapers (Facebook, Twitter/X, LinkedIn, Slack,
+# Discord) need to fetch in order to render og:image and og:title cards
+# when staging URLs are shared. They don't add the URL to a search index,
+# they only fetch on link-share for rich preview. Without these allows,
+# FB Sharing Debugger returns 403 and previews show only the URL.
+#
+# At production cutover, this file is swapped for the AI-bot allowlist
 # (GPTBot, ChatGPT-User, ClaudeBot, anthropic-ai, PerplexityBot,
-#  Google-Extended, Applebot-Extended, CCBot, cohere-ai).
+#  Google-Extended, Applebot-Extended, CCBot, cohere-ai) + Googlebot etc.
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
 
 User-agent: *
 Disallow: /
