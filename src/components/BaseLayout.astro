@@ -45,6 +45,18 @@ const websiteSchema = {
   inLanguage: 'en-US',
 };
 
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: title,
+  description: description,
+  isPartOf: { '@id': `${site.url}#website` },
+  about: { '@id': `${site.url}#organization` },
+  primaryImageOfPage: ogImageUrl,
+};
+
 const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -96,6 +108,7 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
     {breadcrumbSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     )}
