@@ -380,7 +380,7 @@ footer .bg-media{
 }
 footer .bg-overlay{
   position:absolute; inset:0; z-index:-1;
-  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.22));
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.50));
 }
 .footer-inner{ padding: 130px 24px 110px; }
 .footer-logo{
