@@ -422,14 +422,14 @@ footer .bg-overlay{
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(8px);
-  background: var(--cream);
-  border: 1px solid rgba(0,0,0,0.08);
-  min-width: 200px;
-  padding: 10px 0;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.12);
+  min-width: 240px;
+  padding: 6px 0;
   opacity: 0;
   visibility: hidden;
   transition: opacity .18s, transform .18s, visibility .18s;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.18);
 }
 .nav-item:hover .dropdown,
 .nav-item:focus-within .dropdown{
@@ -437,11 +437,14 @@ footer .bg-overlay{
 }
 .dropdown a{
   display:block;
-  padding: 10px 22px;
-  font-size: 12px;
+  padding: 16px 28px;
+  font-size: 13px;
   letter-spacing: 1.5px;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
-.dropdown a:hover{ background: rgba(0,0,0,0.04); }
+.dropdown a:last-child{ border-bottom: 0; }
+.dropdown a:hover{ background: var(--cream); color: var(--ink); }
 
 /* ===== Mobile hamburger drawer (Tier 1 convention added on top of design) ===== */
 .nav-toggle{
