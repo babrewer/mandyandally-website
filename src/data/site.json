@@ -14,7 +14,8 @@
     "facebookUrl": "https://www.facebook.com/mandyandally/",
     "amazonUrl": "https://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A27DXTENS4J5GM&merchant=A27DXTENS4J5GM&redirect=true",
     "beholdFeedId": "ZHjKU2QVX5AhjnmI4U5c",
-    "yearFounded": 2018
+    "yearFounded": 2018,
+    "founders": ["Mandy", "Ally"]
   },
   "locations": [
     {

@@ -8,10 +8,10 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
-  pageType?: 'website' | 'article' | 'localBusiness';
+  breadcrumbs?: { name: string; href: string }[];
 }
 
-const { title, description = siteData.site.description, ogImage, pageType = 'website' } = Astro.props;
+const { title, description = siteData.site.description, ogImage, breadcrumbs } = Astro.props;
 const { site } = siteData;
 const pathname = Astro.url.pathname;
 const canonical = new URL(pathname, site.url).toString();
@@ -19,6 +19,42 @@ const ogImageUrl = ogImage
   ? new URL(ogImage, site.url).toString()
   : new URL(site.ogImage, site.url).toString();
 const year = new Date().getFullYear();
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site.url}#organization`,
+  name: site.name,
+  alternateName: 'Mandy+Ally',
+  url: site.url,
+  logo: new URL(site.logoColor, site.url).toString(),
+  image: new URL(site.ogImage, site.url).toString(),
+  description: site.description,
+  foundingDate: String((site as any).yearFounded ?? ''),
+  founder: ((site as any).founders ?? []).map((name: string) => ({ '@type': 'Person', name })),
+  sameAs: [site.instagramUrl, site.facebookUrl, site.amazonUrl].filter(Boolean),
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.url}#website`,
+  url: site.url,
+  name: site.name,
+  publisher: { '@id': `${site.url}#organization` },
+  inLanguage: 'en-US',
+};
+
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: b.name,
+    item: new URL(b.href, site.url).toString(),
+  })),
+} : null;
 ---
 <!doctype html>
 <html lang="en">
@@ -54,6 +90,15 @@ const year = new Date().getFullYear();
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="icon" type="image/svg+xml" href={site.logoColor} />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site index" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
 
     <slot name="head" />
   </head>

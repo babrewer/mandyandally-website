@@ -46,11 +46,18 @@ const description = `${loc.addressLines.join(' ')}. ${loc.hours.join(' ')}. Phon
 const phoneTel = loc.phone.replace(/[^0-9+]/g, '');
 const shareUrl = encodeURIComponent(pageUrl);
 const shareText = encodeURIComponent(loc.fullName);
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Locations', href: '/#locations' },
+  { name: loc.name, href: `/locations/${loc.slug}` },
+];
 ---
 <BaseLayout
   title={`${loc.fullName} | Mandy+Ally`}
   description={description}
   ogImage={heroImage}
+  breadcrumbs={breadcrumbs}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />

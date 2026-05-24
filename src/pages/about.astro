@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+];
 ---
 <BaseLayout
   title="About | Mandy+Ally"
   description="The story behind Mandy + Ally — two longtime fashion buyers who left big retail to bring quality service and fun fashion to Savannah and Hilton Head."
+  ogImage="/images/about-owners.jpeg"
+  breadcrumbs={breadcrumbs}
 >
   <section class="about about-page">
     <div class="container about-grid">
