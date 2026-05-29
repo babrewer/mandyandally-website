@@ -1,43 +1,41 @@
-# STAGING — search engines blocked, social-link-preview scrapers allowed.
-#
-# Search engines (Googlebot, Bingbot, etc) MUST stay blocked while staging
-# to prevent the .pages.dev URL from getting indexed before cutover.
-#
-# BUT social-link-preview scrapers (Facebook, Twitter/X, LinkedIn, Slack,
-# Discord) need to fetch in order to render og:image and og:title cards
-# when staging URLs are shared. They don't add the URL to a search index,
-# they only fetch on link-share for rich preview. Without these allows,
-# FB Sharing Debugger returns 403 and previews show only the URL.
-#
-# At production cutover, this file is swapped for the AI-bot allowlist
-# (GPTBot, ChatGPT-User, ClaudeBot, anthropic-ai, PerplexityBot,
-#  Google-Extended, Applebot-Extended, CCBot, cohere-ai) + Googlebot etc.
+# Production — Mandy + Ally. Open to all crawlers, search + AI.
 
-User-agent: facebookexternalhit
+# AI / LLM crawlers — explicitly welcomed (pairs with /llms.txt)
+User-agent: GPTBot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: ChatGPT-User
 Allow: /
 
-User-agent: LinkedInBot
+User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: Slackbot
+User-agent: ClaudeBot
 Allow: /
 
-User-agent: Slackbot-LinkExpanding
+User-agent: anthropic-ai
 Allow: /
 
-User-agent: Discordbot
+User-agent: Claude-Web
 Allow: /
 
-User-agent: WhatsApp
+User-agent: PerplexityBot
 Allow: /
 
-User-agent: TelegramBot
+User-agent: Google-Extended
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Everyone else (Googlebot, Bingbot, social scrapers, etc.)
 User-agent: *
-Disallow: /
+Allow: /
 
 Sitemap: https://www.mandyandally.com/sitemap-index.xml
